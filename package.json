@@ -1,0 +1,30 @@
+{
+  "name": "@renaatdemuynck/indeterminable-checkbox",
+  "version": "0.1.0",
+  "description": "Makes checkboxes cycle through checked, unchecked and intermediate visual states",
+  "license": "MIT",
+  "author": "Renaat De Muynck <renaat.demuynck@gmail.com>",
+  "repository": "https://github.com/renaatdemuynck/indeterminable-checkbox.git",
+  "module": "src/index.js",
+  "browser": "dist/indeterminable-checkbox.js",
+  "unpkg": "dist/indeterminable-checkbox.min.js",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "rimraf": "^2.6.3",
+    "rollup": "^1.1.0",
+    "rollup-plugin-babel": "^4.3.0",
+    "uglify-js": "^3.4.9"
+  },
+  "scripts": {
+    "build:clean": "rimraf dist/*",
+    "build:compile": "rollup --config",
+    "build:minify": "uglifyjs dist/indeterminable-checkbox.js --mangle --compress --output dist/indeterminable-checkbox.min.js",
+    "prebuild": "npm run build:clean",
+    "build": "npm run build:compile && npm run build:minify",
+    "prepare": "npm run build"
+  }
+}
