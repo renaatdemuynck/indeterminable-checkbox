@@ -14,15 +14,19 @@
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
+    "babel-loader": "^8.0.5",
     "rimraf": "^2.6.3",
     "rollup": "^1.1.0",
     "rollup-plugin-babel": "^4.3.0",
-    "uglify-js": "^3.4.9"
+    "uglify-js": "^3.4.9",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1"
   },
   "scripts": {
     "build:clean": "rimraf dist/*",
     "build:compile": "rollup --config",
     "build:minify": "uglifyjs dist/indeterminable-checkbox.js --mangle --compress --output dist/indeterminable-checkbox.min.js",
+    "build:demo": "webpack --config demo/webpack.config.js",
     "prebuild": "npm run build:clean",
     "build": "npm run build:compile && npm run build:minify",
     "prepare": "npm run build"
