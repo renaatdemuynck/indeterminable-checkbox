@@ -38,4 +38,14 @@ export default function (checkbox) {
             }, { once: true });
         }
     }, true);
+
+    document.addEventListener('keyup', function (e) {
+        if (findCheckbox(e.target) !== checkbox || e.keyCode !== 32) return;
+
+        if (!checkbox.checked && !checkbox.indeterminate) {
+            e.preventDefault();
+            checkbox.indeterminate = true;
+        }
+    }, true);
+
 }
