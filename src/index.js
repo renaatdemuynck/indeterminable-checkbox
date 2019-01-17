@@ -22,24 +22,18 @@ function findCheckbox(element) {
  * @param checkbox {HTMLInputElement}
  */
 function addListener(checkbox) {
-    var handler;
-    
-    function getHandler(checked, indeterminate) {
-        return function () {
-            checkbox.checked = checked;
-            checkbox.indeterminate = indeterminate;
-        }
+    var state = checkbox.indeterminate
+        ? [true, false]
+        : checkbox.checked
+        ? [false, false]
+        : [false, true];
+        
+    var getHandler = ([checked, indeterminate]) => function () {
+        checkbox.checked = checked;
+        checkbox.indeterminate = indeterminate;
     }
     
-    if (checkbox.indeterminate) {
-        handler = getHandler(true, false);
-    } else if (checkbox.checked) {
-        handler = getHandler(false, false);
-    } else {
-        handler = getHandler(false, true);
-    }
-    
-    checkbox.addEventListener('click', handler, { once: true });
+    checkbox.addEventListener('click', getHandler(state), { once: true });
 }
 
 
