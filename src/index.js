@@ -37,18 +37,18 @@ function addListener(checkbox) {
 }
 
 
-export default function (checkbox) {
+export default function (element) {
     
-    document.addEventListener('mouseup', function (e) {
-        if (findCheckbox(e.target) !== checkbox || e.which !== 1) return;
+    document.addEventListener('mouseup', function (event) {
+        if (findCheckbox(event.target) !== element || event.which !== 1) return;
         
-        addListener(checkbox);
+        addListener(element);
     }, true);
 
-    document.addEventListener('keyup', function (e) {
-        if (findCheckbox(e.target) !== checkbox || e.keyCode !== 32) return;
+    document.addEventListener('keyup', function (event) {
+        if (findCheckbox(event.target) !== element || event.keyCode !== 32) return;
         
-        addListener(checkbox);
+        addListener(element);
     }, true);
 
 }
