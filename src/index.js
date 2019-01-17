@@ -41,10 +41,25 @@ export default function (checkbox) {
 
     document.addEventListener('keyup', function (e) {
         if (findCheckbox(e.target) !== checkbox || e.keyCode !== 32) return;
-
-        if (!checkbox.checked && !checkbox.indeterminate) {
-            e.preventDefault();
-            checkbox.indeterminate = true;
+        
+        if (checkbox.indeterminate) {
+            checkbox.addEventListener('click', function () {
+                e.preventDefault();
+                checkbox.checked = true;
+                checkbox.indeterminate = false;
+            }, { once: true });
+        } else if (checkbox.checked) {
+            checkbox.addEventListener('click', function () {
+                e.preventDefault();
+                checkbox.checked = false;
+                checkbox.indeterminate = false;
+            }, { once: true });
+        } else if (!checkbox.checked) {
+            checkbox.addEventListener('click', function () {
+                e.preventDefault();
+                checkbox.checked = false;
+                checkbox.indeterminate = true;
+            }, { once: true });
         }
     }, true);
 
