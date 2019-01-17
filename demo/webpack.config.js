@@ -3,7 +3,10 @@ const path = require('path');
 module.exports = {
     mode: 'production',
     entry: {
-        'main': path.resolve(__dirname, 'src/index.js')
+        'main': [
+            'nodelist-foreach-polyfill',
+            path.resolve(__dirname, 'src/index.js')
+        ]
     },
     output: {
         path: path.resolve(__dirname, 'public/scripts')

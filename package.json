@@ -30,5 +30,8 @@
     "prebuild": "npm run build:clean",
     "build": "npm run build:compile && npm run build:minify",
     "prepare": "npm run build"
+  },
+  "dependencies": {
+    "nodelist-foreach-polyfill": "^1.2.0"
   }
 }
