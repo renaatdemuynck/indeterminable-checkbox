@@ -10,7 +10,7 @@ function findCheckbox(element) {
         case 'INPUT':
             return element.type === 'checkbox' ? element : null;
         case 'LABEL':
-            return findCheckbox(element.htmlFor ? document.getElementById(element.htmlFor) : element.querySelementector('INPUT'));
+            return findCheckbox(element.htmlFor ? document.getElementById(element.htmlFor) : element.querySelector('INPUT'));
         default:
             return null;
     }
