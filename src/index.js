@@ -16,51 +16,45 @@ function findCheckbox(element) {
     }
 }
 
+/**
+ * Adds a one time click event listener to the checkbox
+ * 
+ * @param checkbox {HTMLInputElement}
+ */
+function addListener(checkbox) {
+    var handler;
+    
+    function getHandler(checked, indeterminate) {
+        return function () {
+            checkbox.checked = checked;
+            checkbox.indeterminate = indeterminate;
+        }
+    }
+    
+    if (checkbox.indeterminate) {
+        handler = getHandler(true, false);
+    } else if (checkbox.checked) {
+        handler = getHandler(false, false);
+    } else {
+        handler = getHandler(false, true);
+    }
+    
+    checkbox.addEventListener('click', handler, { once: true });
+}
+
 
 export default function (checkbox) {
+    
     document.addEventListener('mouseup', function (e) {
         if (findCheckbox(e.target) !== checkbox || e.which !== 1) return;
         
-        if (checkbox.indeterminate) {
-            checkbox.addEventListener('click', function () {
-                checkbox.checked = true;
-                checkbox.indeterminate = false;
-            }, { once: true });
-        } else if (checkbox.checked) {
-            checkbox.addEventListener('click', function () {
-                checkbox.checked = false;
-                checkbox.indeterminate = false;
-            }, { once: true });
-        } else if (!checkbox.checked) {
-            checkbox.addEventListener('click', function () {
-                checkbox.checked = false;
-                checkbox.indeterminate = true;
-            }, { once: true });
-        }
+        addListener(checkbox);
     }, true);
 
     document.addEventListener('keyup', function (e) {
         if (findCheckbox(e.target) !== checkbox || e.keyCode !== 32) return;
         
-        if (checkbox.indeterminate) {
-            checkbox.addEventListener('click', function () {
-                e.preventDefault();
-                checkbox.checked = true;
-                checkbox.indeterminate = false;
-            }, { once: true });
-        } else if (checkbox.checked) {
-            checkbox.addEventListener('click', function () {
-                e.preventDefault();
-                checkbox.checked = false;
-                checkbox.indeterminate = false;
-            }, { once: true });
-        } else if (!checkbox.checked) {
-            checkbox.addEventListener('click', function () {
-                e.preventDefault();
-                checkbox.checked = false;
-                checkbox.indeterminate = true;
-            }, { once: true });
-        }
+        addListener(checkbox);
     }, true);
 
 }
