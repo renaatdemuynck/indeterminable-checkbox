@@ -1,6 +1,6 @@
 {
   "name": "@renaatdemuynck/indeterminable-checkbox",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Makes checkboxes cycle through checked, unchecked and intermediate visual states",
   "license": "MIT",
   "author": "Renaat De Muynck <renaat.demuynck@gmail.com>",

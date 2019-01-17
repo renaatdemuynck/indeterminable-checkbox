@@ -24,6 +24,12 @@ export default function (checkbox) {
         if (checkbox.indeterminate) {
             checkbox.addEventListener('click', function () {
                 checkbox.checked = true;
+                checkbox.indeterminate = false;
+            }, { once: true });
+        } else if (checkbox.checked) {
+            checkbox.addEventListener('click', function () {
+                checkbox.checked = false;
+                checkbox.indeterminate = false;
             }, { once: true });
         } else if (!checkbox.checked) {
             checkbox.addEventListener('click', function () {
