@@ -43,12 +43,12 @@ export default function (element) {
         if (findCheckbox(event.target) !== element || event.which !== 1) return;
         
         addListener(element);
-    }, true);
+    }, { capture: true });
 
     document.addEventListener('keyup', function (event) {
         if (findCheckbox(event.target) !== element || event.keyCode !== 32) return;
         
         addListener(element);
-    }, true);
-
+    }, { capture: true });
+    
 }
